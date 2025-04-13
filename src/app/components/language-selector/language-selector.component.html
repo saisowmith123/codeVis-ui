@@ -1,0 +1,8 @@
+<select
+  [(ngModel)]="selectedLanguage"
+  (ngModelChange)="languageChange.emit($event)"
+  class="w-32 border p-1 rounded cursor-pointer"
+>
+  <option value="python">🐍 Python</option>
+  <option value="r">📊 R</option>
+</select>

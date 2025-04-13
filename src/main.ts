@@ -1,6 +1,24 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+import {
+  provideMonacoEditor,
+  NgxMonacoEditorConfig,
+} from 'ngx-monaco-editor-v2';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHttpClient(),
+    provideAnimations(),
+    provideToastr(),
+    provideMonacoEditor({
+      baseUrl: 'assets/monaco',
+      defaultOptions: {
+        scrollBeyondLastLine: false,
+      },
+    } as NgxMonacoEditorConfig),
+  ],
+}).catch((err) => console.error(err));

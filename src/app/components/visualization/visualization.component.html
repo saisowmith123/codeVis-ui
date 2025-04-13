@@ -1,0 +1,42 @@
+<label class="text-md font-medium">Visualization Result</label>
+<div class="border rounded-md min-h-[500px] bg-white">
+  <div class="flex justify-end items-center">
+    <a
+      *ngIf="visualizationData?.url"
+      [href]="visualizationData.url"
+      target="_blank"
+      class="text-sm mb-1 text-blue-600 underline"
+    >
+      Open in new tab
+    </a>
+  </div>
+
+  <div class="w-full h-[500px] flex items-center justify-center">
+    <ng-container *ngIf="loading; else vizContent">
+      <div class="animate-pulse w-full h-full bg-gray-200"></div>
+    </ng-container>
+
+    <ng-template #vizContent>
+      <ng-container *ngIf="visualizationData?.url; else noViz">
+        <img
+          *ngIf="isImage"
+          [src]="visualizationData.url"
+          alt="Visualization"
+          class="max-h-full max-w-full object-contain"
+        />
+        <iframe
+          *ngIf="!isImage"
+          [src]="visualizationData.url"
+          class="w-full h-full border-none"
+          sandbox="allow-scripts"
+        ></iframe>
+      </ng-container>
+
+      <ng-template #noViz>
+        <p class="text-gray-500 text-sm">
+          No visualization available. Submit your code to generate one.
+        </p>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

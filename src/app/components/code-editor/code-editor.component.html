@@ -1,0 +1,13 @@
+<ngx-monaco-editor
+  [options]="{
+    theme: 'vs-light',
+    minimap: { enabled: false },
+    fontSize: 14,
+    tabSize: 2,
+    automaticLayout: true
+  }"
+  [model]="editorModel"
+  (onInit)="onEditorInit($event)"
+  (modelChange)="onCodeChange($event)"
+  class="border rounded-md overflow-hidden h-[450px]"
+></ngx-monaco-editor>
